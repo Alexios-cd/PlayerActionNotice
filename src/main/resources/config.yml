@@ -1,1 +1,5 @@
-sayhello: hello world.
+# 从 https://wxpusher.zjiecode.com/admin/main/wxuser/list 获取
+wxpusher:
+  appToken: xxxxxxxxxx
+  topicIds:
+    - xxxxxxx
