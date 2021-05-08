@@ -3,3 +3,5 @@ wxpusher:
   appToken: xxxxxxxxxx
   topicIds:
     - xxxxxxx
+  #管理员登录是否需要推送，默认为false：不推送
+  isOpPush: false

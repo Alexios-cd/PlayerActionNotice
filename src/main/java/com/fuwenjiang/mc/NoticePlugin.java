@@ -26,20 +26,21 @@ public class NoticePlugin extends JavaPlugin implements Listener {
 
     private String wxAppToken;
     private List<String> topicIds;
+    private boolean isOpNotice;
 
     @Override
     public void onEnable() {
-
         getLogger().info("玩家事件插件已经启动");
-        Bukkit.getPluginManager().registerEvents(this, this);
         this.saveDefaultConfig();
         wxAppToken = this.getConfig().getString("wxpusher.appToken");
         topicIds = this.getConfig().getStringList("wxpusher.topicIds");
-        if (StrUtil.isBlank(wxAppToken) || CollUtil.isEmpty(topicIds)) {
-            getLogger().warning("配置文件错误，功能失效");
-        } else {
+        isOpNotice = this.getConfig().getBoolean("wxpusher.isOpNotice", false);
+        if (StrUtil.isNotBlank(wxAppToken) && CollUtil.isNotEmpty(topicIds)) {
             getLogger().info("获取到wxAppToken：" + wxAppToken);
             getLogger().info("topicIds：" + topicIds);
+            Bukkit.getPluginManager().registerEvents(this, this);
+        } else {
+            getLogger().warning("配置文件错误，功能失效，各种事件将不予监听");
         }
     }
 
@@ -47,8 +48,8 @@ public class NoticePlugin extends JavaPlugin implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         getLogger().info(player.getDisplayName() + " 登录服务器");
-        if (StrUtil.isBlank(wxAppToken) || CollUtil.isEmpty(topicIds)) {
-            getLogger().info("配置参数错误，不予推送。");
+        if (player.isOp() && !isOpNotice) {
+            getLogger().info("管理员：" + player.getDisplayName() + "登录服务器，不予推送");
         } else {
             MessagePushUtils.pushWXLoginMessage(event, wxAppToken, topicIds);
             getLogger().info("已推送微信通知");
@@ -59,8 +60,8 @@ public class NoticePlugin extends JavaPlugin implements Listener {
     public void onPlayerQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         getLogger().info(player.getDisplayName() + " 退出服务器");
-        if (StrUtil.isBlank(wxAppToken) || CollUtil.isEmpty(topicIds)) {
-            getLogger().info("配置参数错误，不予推送。");
+        if (player.isOp() && !isOpNotice) {
+            getLogger().info("管理员：" + player.getDisplayName() + "退出服务器，不予推送");
         } else {
             MessagePushUtils.pushWXQuitMessage(event, wxAppToken, topicIds);
             getLogger().info("已推送微信通知");
