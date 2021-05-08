@@ -1,0 +1,13 @@
+#我们自己的国际化配置，名字自己起，java enum对应即可
+TEST_LANG_HELLO: '测试的语言配置'
+
+
+#需要配置以下4个国际化选项，key是固定的，值是当前插件语言对应的话语，不配置就是英文。
+#无权限提醒
+COMMAND_PERMISSIONDENIEDMESSAGE: '&4你没有使用 /{0} 命令的权限'
+#不属于命令执行范围，如玩家无法执行控制台命令，控制台无法执行玩家的命令
+COMMAND_NOCOMMANDSENDERTYPEMESSAGE: '&4你使用的终端无法使用该命令'
+#参数列表不正确
+COMMAND_ARGS_ERROR: '&4参数列表不正确'
+#命令未找到
+COMMAND_NOT_FOUND_COMMAND: '&4命令不存在'

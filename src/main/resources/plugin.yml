@@ -1,0 +1,24 @@
+#插件名字
+name: PlayerActionNotice
+#插件作者
+authors: [ alexios ]
+#插件的主页
+website: http://www.mountcloud.org
+#插件描述
+description: 玩家上线专用插件.
+#main函数类
+main: com.fuwenjiang.mc.NoticePlugin
+#版本
+version: 1.0
+
+api-version: 1.13
+#使用mc-plugin-common必须设置依赖关系为 [McPluginCommon]，use mc-plugin-common must set the dependency [McPluginCommon]
+#depend: [McPluginCommon]
+##插件需要注册的命令
+#commands:
+#  #命令是test
+#  f_test:
+#    #描述
+#    description: test
+#    #用法
+#    usage: /f_test
