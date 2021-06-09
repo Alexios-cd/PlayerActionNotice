@@ -10,6 +10,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -51,7 +52,9 @@ public class NoticePlugin extends JavaPlugin implements Listener {
         if (player.isOp() && !isOpNotice) {
             getLogger().info("管理员：" + player.getDisplayName() + "登录服务器，不予推送");
         } else {
-            MessagePushUtils.pushWXLoginMessage(event, wxAppToken, topicIds);
+            Collection<? extends Player> onlinePlayers = getServer().getOnlinePlayers();
+//            MessagePushUtils.pushWXLoginMessage(event, wxAppToken, topicIds);
+            MessagePushUtils.pushMessageDelay(event, onlinePlayers, wxAppToken, topicIds, getLogger());
             getLogger().info("已推送微信通知");
         }
     }
@@ -63,7 +66,9 @@ public class NoticePlugin extends JavaPlugin implements Listener {
         if (player.isOp() && !isOpNotice) {
             getLogger().info("管理员：" + player.getDisplayName() + "退出服务器，不予推送");
         } else {
-            MessagePushUtils.pushWXQuitMessage(event, wxAppToken, topicIds);
+//            MessagePushUtils.pushWXQuitMessage(event, wxAppToken, topicIds);
+            Collection<? extends Player> onlinePlayers = getServer().getOnlinePlayers();
+            MessagePushUtils.pushMessageDelay(event, onlinePlayers, wxAppToken, topicIds, getLogger());
             getLogger().info("已推送微信通知");
         }
     }
