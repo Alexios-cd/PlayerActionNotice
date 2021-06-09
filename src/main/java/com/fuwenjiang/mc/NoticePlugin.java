@@ -55,7 +55,7 @@ public class NoticePlugin extends JavaPlugin implements Listener {
             Collection<? extends Player> onlinePlayers = getServer().getOnlinePlayers();
 //            MessagePushUtils.pushWXLoginMessage(event, wxAppToken, topicIds);
             MessagePushUtils.pushMessageDelay(event, onlinePlayers, wxAppToken, topicIds, getLogger());
-            getLogger().info("已推送微信通知");
+//            getLogger().info("已推送微信通知");
         }
     }
 
@@ -69,7 +69,7 @@ public class NoticePlugin extends JavaPlugin implements Listener {
 //            MessagePushUtils.pushWXQuitMessage(event, wxAppToken, topicIds);
             Collection<? extends Player> onlinePlayers = getServer().getOnlinePlayers();
             MessagePushUtils.pushMessageDelay(event, onlinePlayers, wxAppToken, topicIds, getLogger());
-            getLogger().info("已推送微信通知");
+//            getLogger().info("已推送微信通知");
         }
     }
 
